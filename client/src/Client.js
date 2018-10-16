@@ -24,7 +24,7 @@ function list(query, cb) {
 }
 
 function show(id, cb) {
-  let url = `api/products/${id}`;
+  let url = `../api/products/${id}`;
   return fetch(url,{
     headers:{'content-type': 'application/json'},
   })
@@ -34,7 +34,7 @@ function show(id, cb) {
 }
 
 function update(product, cb) {
-  let url = `api/products/${product.id}`;
+  let url = `../api/products/${product.id}`;
   return fetch(url,{
     method: 'PUT',
     headers:{'content-type': 'application/json'},
@@ -45,7 +45,7 @@ function update(product, cb) {
 }
 
 function remove(id, cb) {
-  let url = `api/products/${id}`;
+  let url = `../api/products/${id}`;
   return fetch(url,{
     method: 'DELETE',
     headers:{'content-type': 'application/json'},
