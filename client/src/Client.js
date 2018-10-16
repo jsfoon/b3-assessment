@@ -9,11 +9,11 @@ function search(query, cb) {
 }
 
 function list(query, cb) {
-  let url = `http://localhost:3001/api/products`;
+  let url = `api/products`;
   if (typeof query === 'object') {
-    url = new URL(url);
+    let params = Object.keys(query).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(query[k])}`).join('&');
+    url = `${url}?${params}`;
     console.log(url)
-    Object.keys(query).forEach(key => url.searchParams.append(key, query[key]))
   }
   return fetch(url,{
     headers:{'content-type': 'application/json'},
@@ -24,7 +24,7 @@ function list(query, cb) {
 }
 
 function show(id, cb) {
-  let url = `http://localhost:3001/api/products/${id}`;
+  let url = `api/products/${id}`;
   return fetch(url,{
     headers:{'content-type': 'application/json'},
   })
@@ -34,7 +34,7 @@ function show(id, cb) {
 }
 
 function update(product, cb) {
-  let url = `http://localhost:3001/api/products/${product.id}`;
+  let url = `api/products/${product.id}`;
   return fetch(url,{
     method: 'PUT',
     headers:{'content-type': 'application/json'},
@@ -45,7 +45,7 @@ function update(product, cb) {
 }
 
 function remove(id, cb) {
-  let url = `http://localhost:3001/api/products/${id}`;
+  let url = `api/products/${id}`;
   return fetch(url,{
     method: 'DELETE',
     headers:{'content-type': 'application/json'},
